@@ -99,8 +99,20 @@ void Triples::clear_triples() {
 }
 
 void Triples::store_triples() {
+	struct stat st; //for verification of directory existence
 	ofstream ofile;
 	string filename;
+	//se nao tiver diretorio, criar
+	if (!(stat("output/triples/", &st) == 0 && S_ISDIR(st.st_mode)))
+	{
+		const int dir_err = system("mkdir -p output/triples/");
+		if (-1 == dir_err)
+		{
+		    printf("Fatal Error: error creating directory!n");
+		    exit(1);
+		}
+	}
+
 	filename = "output/triples/part_" + int_to_string(n_file) + ".txt";
 	ofile.open(filename.c_str());
 	ofile << to_string();

@@ -5,6 +5,8 @@
 
 #include <fstream>
 #include <dirent.h>
+#include <sys/stat.h> //verify if directory exists
+#include <cstdlib>
 
 #include "gkio.h"
 #include "Vocabulary.h"
